@@ -1,36 +1,242 @@
-<!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-	
-	<title></title>
-</head>
-<body>
-	<header>
-		<nav class="navbar bg-body-tertiary fixed-top">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">aaaaaaaa</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-			</div>
+	<head>
+		<title>-</title>
+		
+		<style>
+		
+			body {
+				background: linear-gradient(45deg, limegreen, red);
+				font-size: 30px;
+				max-height: 75%;
+				
+			}
 			
-		</nav>
-	</header>
+			.content {
+				margin: 12.5vh 25vw;
+				width: 50vw;
+				
+				
+				background: ghostwhite;
+				border-radius: 20px;
+				
+				
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.inputs {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+			}
+			
+			.input {
+				border-radius: 100%;
+				border-color: black;
+				text-align: center;
+				width: 5em;
+				height: 5em;
+				
+				-moz-appearance: textfield; 
+			}
+			
+			.input::-webkit-inner-spin-button, .input::-webkit-outer-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+			
+			.button {
+				background-color: ghostwhite;
+				border-radius: 20px;
+				
+				width: 7em;
+				height: 2.5em;
+				
+				font-weight: bold;
+			}
+			
+			.button:hover, .button:disabled {
+				background-color: black;
+				color: ghostwhite;
+			}
+			
+			.calcular {
+				border: none;
+				border-radius: 20px;
+				
+				width: 10em;
+				height: 5em;
+				
+				background: linear-gradient(315deg, limegreen, red);
+				color: ghostwhite;
+				font-weight: bold;
+				font-size: 20px;
+			}
+			
+			.calcular:hover {
+				background: linear-gradient(325deg, limegreen, red);
+			}
+			
+			.calcular:active {
+				background: linear-gradient(335deg, limegreen, red);
+			}
+			
+			.output {
+				margin-top: 1em;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<div class="content">
+			<section class="inputs">
+			
+				<div>
+					<button class="button" id="anual" onclick="anual()">Anual</button>
+					<button class="button" id="semestral" onclick="semestral()">Semestral</button>
+				</div>
+				
+				<label>Nota 1 <input id="n1" class="input" type="number" min="0" max="100" value=0 name="input"> </label>
+				<label>Nota 2 <input id="n2" class="input" type="number" min="0" max="100" value=0 name="input"> </label>
+				<label id="label_n3">Nota 3 <input id="n3" class="input" type="number" min="0" max="100" value=0 name="input"> </label>
+				<label id="label_n4">Nota 4 <input id="n4" class="input" type="number" min="0" max="100" value=0 name="input"> </label>
+				
+				<button class="calcular" onclick="calcular_media()">Calcular</button>
+				
+			</section>
+			
+			<section class="output">
+			
+				<span id="media"></span> <br>
+				<span id="situacao"></span>
+				
+			</section>
+			
+		</div>
+		
+		<script>
+			var calculo = "anual";
+			desabilitar_botao("anual");
+			
+			function calcular_media_anual() {
+				let nota_1 = document.getElementById("n1");
+				let nota_2 = document.getElementById("n2");
+				let nota_3 = document.getElementById("n3");
+				let nota_4 = document.getElementById("n4");
+				let notas = [nota_1, nota_2, nota_3, nota_4];	
+				
+				for (let i=0; i<notas.length; i++) {
+					if (notas[i].value > 100) {
+						notas[i].value = 100;
+					}
+					if (notas[i].value < 0) {
+						notas[i].value = 0;
+					}
+				}			
+				
+				let media = (Number(nota_1.value)*2 + Number(nota_2.value)*2 + Number(nota_3.value)*3 + Number(nota_4.value)*3)/10;
+				return media;
+			}
+			
+			function calcular_media_semestral() {
+				let nota_1 = document.getElementById("n1");
+				let nota_2 = document.getElementById("n2");
+				let notas = [nota_1, nota_2];	
+				
+				for (let i=0; i<notas.length; i++) {
+					if (notas[i].value > 100) {
+						notas[i].value = 100;
+					}
+					if (notas[i].value < 0) {
+						notas[i].value = 0;
+					}
+				}
+				
+				let media = (Number(nota_1.value)*2 + Number(nota_2.value)*3)/5;
+				return media;
+			}
+			
+			function calcular_media() {
+				let media;
+				
+				if (calculo == "anual") {
+					media = calcular_media_anual();
+				}
+				else {
+					media = calcular_media_semestral();
+				}
 
-
-
-
-
-
-
-
-
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+				resultado(media);
+			}
+			
+			function anual() {
+				calculo = "anual";
+				
+				habilitar_botao("semestral");
+				desabilitar_botao("anual");
+				
+				let nota_3 = document.getElementById("label_n3");
+				let nota_4 = document.getElementById("label_n4");
+				nota_3.style["display"] = "inline";
+				nota_4.style["display"] = "inline";
+				
+				zerar_inputs();
+			}
+			
+			function semestral() {
+				calculo = "semestral";
+				
+				habilitar_botao("anual");
+				desabilitar_botao("semestral");
+				
+				let nota_3 = document.getElementById("label_n3");
+				let nota_4 = document.getElementById("label_n4");
+				nota_3.style["display"] = "none";
+				nota_4.style["display"] = "none";
+				
+				zerar_inputs();
+			}
+			
+			function resultado(media) {
+				let text_media = document.getElementById("media");
+				let text_situacao = document.getElementById("situacao");
+				
+				if (media >= 60) {
+					text_media.textContent = "Média: " + String(media);
+					text_situacao.textContent = "Aprovado";
+				}
+				else {
+					text_media.textContent = "Média: " + String(media);
+					text_situacao.textContent = "Reprovado";
+				}
+				
+			}
+			
+			function habilitar_botao(id) {
+				botao = document.getElementById(id);
+				botao.disabled = false;
+			}
+			
+			function desabilitar_botao(id) {
+				botao = document.getElementById(id);
+				botao.disabled = true;
+			}
+			
+			function zerar_inputs() {
+				let inputs = document.getElementsByName("input");
+				for (let i=0; i<inputs.length; i++) {
+					inputs[i].value = 0;
+				}
+				document.getElementById("media").textContent = "";
+				document.getElementById("situacao").textContent = "";
+				
+			}
+			
+		</script>
+	</body>
 </html>
