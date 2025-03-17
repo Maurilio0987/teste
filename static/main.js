@@ -17,7 +17,7 @@ async function update_chats() {
 		div.innerHTML = `<p>${chat}</p>`;
 		div.addEventListener("click", function() {
 			localStorage.setItem("chat", chat);
-			window.location = "http://" + host + "/chat";
+			window.location = host + "/chat";
 		});
 		chats_section.appendChild(div);
 	}
