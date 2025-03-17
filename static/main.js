@@ -1,8 +1,8 @@
-var host = "192.168.2.109";
+var host = window.location.origin;
 
 
 async function get_chats() {
-   let response = await fetch("http://" + host + "/get_chats");
+   let response = await fetch(host + "/get_chats");
    let data = await response.json();
    return data;
 }
