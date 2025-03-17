@@ -1,0 +1,1 @@
+{"sala 1": ["oi", "aaaaaaa", "oi2", "d12v2ev1", "oabn2wabvu"], "sala 2": ["____", "teste"]}
