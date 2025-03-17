@@ -1,4 +1,4 @@
-var host = window.location.origin;
+var host = "https://teste-q2g3.onrender.com";
 
 
 async function get_chats() {
