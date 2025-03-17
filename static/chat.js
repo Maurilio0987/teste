@@ -21,7 +21,7 @@ async function update_chat(chat) {
 
 function send_message() {
 	message = document.getElementById("message").value;
-	fetch("http://" + host + "/send_message", {
+	fetch(host + "/send_message", {
 		method: "POST",
 		headers: {"Content-Type": "application/json"},
 		body: JSON.stringify({"chat": chat, "message": message})
