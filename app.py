@@ -39,4 +39,4 @@ def send_message():
     
     return jsonify({"status": "success"}), 200
 
-app.run(debug=True, host="192.168.2.109", port=80)
+app.run()
