@@ -1,9 +1,9 @@
-var host = "192.168.2.109";
+var host = "https://teste-q2g3.onrender.com";
 var chat = localStorage.getItem("chat");
 
 
 async function get_messages(chat) {
-	let response = await fetch("http://" + host + "/get_messages/" + chat);
+	let response = await fetch(host + "/get_messages/" + chat);
 	let data = await response.json();
 	return data;
 }
