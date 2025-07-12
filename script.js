@@ -25,7 +25,7 @@ video.addEventListener('play', async () => {
 
   const labeledDescriptors = await loadLabeledImages();
   const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.6);
-
+  alert(faceMatcher);
   setInterval(async () => {
     const detections = await faceapi
       .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
